@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html ng-app="ToDoList">
-<head>
-	<meta charset="utf-8">
-	<title>TODO list</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js" ></script>
-	<script src="angular-local-storage.min.js" ></script>
-	<script src="controller.js" ></script>
-</head>
-<body ng-controller="ToDoController">
-	<ul>
-		<li ng-repeat="actividad in todo">
-			{{actividad.descripcion}} - {{actividad.fecha | date: 'short'}}
-		</li>
-	</ul>
-	<form ng-submit="addActv()">
-		<input type="text" ng-model="newActv.descripcion"></input>
-		<input type="datetime-local" ng-model="newActv.fecha"></input>
-		<input type="submit" value="Guardar Actividad">
-	</form>
-	<button ng-click="todo = []">Limpiar</button>
-</body>
+    <head>
+        <meta charset="utf-8">
+        <title>TODO list con servicio factory</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js" ></script>
+        <script src="angular-local-storage.min.js" ></script>
+        <script src="controller.js" ></script>
+    </head>
+    <body ng-controller="ToDoController">
+        <ul>
+            <li ng-repeat="actividad in todo">
+                {{actividad.descripcion}} - {{actividad.fecha| date: 'short'}}
+                - <a href="#" ng-click="removeActv(actividad)" class="color:red;">x</a>
+            </li>
+        </ul>
+        <form ng-submit="addActv()">
+            <input type="text" ng-model="newActv.descripcion"></input>
+            <input type="datetime-local" ng-model="newActv.fecha"></input>
+            <input type="submit" value="Guardar Actividad">
+        </form>
+        <button ng-click="clean()">Limpiar</button>
+    </body>
 </html>

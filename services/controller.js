@@ -1,25 +1,58 @@
-angular.module("ToDoList",["LocalStorageModule"])
-.service("ToDoService",function(localStorageService){
-	var toDoService = {};
+/* 
+ * Service se ejecuta como un constructor
+ */
+angular.module("ToDoList", ["LocalStorageModule"])
+        .service("ToDoService", function (localStorageService) {
 
-	toDoService.key = "angular-todolist";
-	if(localStorageService.get(toDoService.key)){
-		toDoService.activities = localStorageService.get(toDoService.key);
-	}else{
-		toDoService.activities = [];	
-	}
+            this.key = "angular-todolist";
+            if (localStorageService.get(this.key)) {
+                this.activities = localStorageService.get(this.key);
+            } else {
+                this.activities = [];
+            }
 
-	
+            this.add = function (newActv) {
+                this.activities.push(newActv);
+                this.updaLocalStorage();
+            };
 
-	return toDoService();
-})
-.controller("ToDoController",function($scope){
-	$scope.$watchCollection('todo',function(newValue,oldValue){
-		localStorageService.set("angular-todolist",$scope.todo);	
-	});
+            this.updaLocalStorage = function () {
+                localStorageService.set(this.key, this.activities);
+            };
 
-	$scope.addActv = function(){
-		$scope.todo.push($scope.newActv);
-		$scope.newActv = {};
-	}
-});
+            this.clean = function () {
+                this.activities = [];
+                this.updaLocalStorage();
+                return this.getAll();
+            };
+
+            this.getAll = function () {
+                return this.activities;
+            };
+
+            this.removeItem = function (item) {
+                this.activities = this.activities.filter(function (activity) {
+                    return activity !== item;
+                });
+                this.updaLocalStorage();
+                return this.getAll();
+            };
+
+            return this;
+        })
+        .controller("ToDoController", function ($scope, ToDoService) {
+            $scope.todo = ToDoService.getAll();
+
+            $scope.addActv = function () {
+                ToDoService.add($scope.newActv);
+                $scope.newActv = {};
+            };
+
+            $scope.removeActv = function (item) {
+                $scope.todo = ToDoService.removeItem(item);
+            };
+
+            $scope.clean = function (item) {
+                $scope.todo = ToDoService.clean();
+            };
+        });
