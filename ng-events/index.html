@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<!--
+    Eventos manejados a traves de directivas
+-->
+<html ng-app>
+    <head>
+        <meta charset="UTF-8">
+        <title>ng-events y ng-class</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js" ></script>
+    </head>
+    <body>
+        <button ng-mouseover="bandera = true" ng-mouseout="bandera = false">
+            Hover me
+        </button><span ng-show="bandera">&lt;-click me</span>
+        <p>
+            {{bandera}}
+        </p>
+    </body>
+</html>
