@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--
+    directivas de angular
+    usando el api de github
+    ng-cloak oculta los elementos hasta que se compile el javascript
+    -creando directivas personalizadas
+-->
+<html ng-app="CustomDirective">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="autocomplete-jquery-ui.structure.css">
+        <link rel="stylesheet" href="style.css">
+        <title>Directivas personalizadas 2</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js" ></script>
+        <script src="//code.jquery.com/jquery-1.12.4.min.js" ></script>
+        <script src="autocomplete-jquery-ui.js" ></script>
+        <script src="app.js"></script>
+        <style>
+            .circular{
+                border-radius: 50%;
+                width: 100px;
+                height: 100px;
+                display: inline-block;
+            }
+            
+            .no-list li{
+                list-style-type: none;
+            }
+            
+            body, html {
+                text-align: center;
+                background-color: #eee;
+                margin: 0px;
+            }
+            
+        </style>
+    </head>
+    <body ng-controller="AppCtrl">
+        <input type="text" my-autocomplete="repos" placeholder="Buscar Repositorio">
+        <ul class="no-list">
+            <li ng-repeat="repo in posts" ng-hide="main_repo && main_repo != repo.name">
+                <div class="circular" back-img="{{repo.owner.avatar_url}}"></div>
+                
+                <h1 class="inline-block">{{repo.full_name}}</h1>
+            </li>
+        </ul>
+        <a ng-click="main_repo = null">Limpiar</a>
+    </body>
+</html>

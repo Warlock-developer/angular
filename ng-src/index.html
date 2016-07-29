@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--
+    directivas de angular
+    usando el api de github
+    ng-cloak oculta los elementos hasta que se compile el javascript
+    -creando directivas personalizadas
+-->
+<html ng-app="CustomDirective">
+    <head>
+        <meta charset="UTF-8">
+        <title>ng-src y ng-cloak</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js" ></script>
+        <script src="app.js"></script>
+        <style>
+            .circular{
+                border-radius: 50%;
+                width: 100px;
+                height: 100px;
+                display: inline-block;
+            }
+        </style>
+    </head>
+    <body ng-controller="AppCtrl">
+        <ul class="no-list" ng-cloak>
+            <li ng-repeat="repo in repos">
+                <!--<img ng-src="{{repo.owner.avatar_url}}">-->
+                <!--<div class="circular" style="background:url({{repo.owner.avatar_url}});background-position: center; background-size: cover;"></div>-->
+                <div class="circular" back-img="{{repo.owner.avatar_url}}"></div>
+                <h1>{{repo.name}}</h1>
+            </li>
+        </ul>
+    </body>
+</html>
