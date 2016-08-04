@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html ng-app="store">
+    <head>
+        <title>Práctica 1 Angulas.js</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <Link rel="stylesheet/less" href="bootstrap-3.3.6/less/bootstrap.less" > <!-- usando lees -->
+
+        <script src="bootstrap-3.3.6/dist/js/less.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="bootstrap-3.3.6/dist/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js" ></script>
+        <script src="app.js"></script>
+    </head>
+    <body ng-controller="StoreController as store">
+        <!--            <p>
+                        Una directiva: es una marca html que le dice a angular instanciar o hacer referencia a un determinado codigo de javascript<br>
+                        Un Modulo: Donde escribimos piesad de una aplicación angular, encapsulamiento, mejora la forma de leer el código, mejor texteable y
+                        mejor mantenimiento del mismo, donde se definen las dependencias
+                    </p>-->
+        <!--        <div ng-hide="store.products[0].souldOut">
+                    <h1>{{store.products[0].name}}</h1>
+                    <h2>${{store.products[0].price}} </h2>
+                    <p>{{store.products[0].description}}</p>
+                    <button ng-show="store.products[0].canPurchase">Add to Cart</button>
+                </div>-->
+        <!--Directiva ng-repeat o boocke-->
+        <!--        <div ng-repeat="product in store.products">
+                    <h1>{{product.name}}</h1>
+                    <h2>${{product.price}} </h2>
+                    <p>{{product.description}}</p>
+                    <button ng-show="product.canPurchase">
+                        Add to Cart</button>
+                </div>-->
+        <!--Filtros   currency, date:'MM/dd/yyyy @ h:mma', uppercase, lowercase, limitTo:8 -->
+<!--        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="product in store.products| orderBy:'-price'">
+                <h3>
+                    {{product.name}}
+                    <em class="pull-right">{{product.price| currency}}</em>
+                    <img ng-src='{{product.images[0].full}}'/>
+                </h3>
+            </li>
+        </ul>-->
+    </body>
+</html>
+
+----------------------------------------------
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html ng-app="store">
+    <head>
+        <title>Práctica 1 Angulas.js</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <Link rel="stylesheet/less" href="bootstrap-3.3.6/less/bootstrap.less" > <!-- usando lees -->
+
+        <script src="bootstrap-3.3.6/dist/js/less.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="bootstrap-3.3.6/dist/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js" ></script>
+        <script src="app.js"></script>
+    </head>
+    <body ng-controller="StoreController as store">
+        <section ng-controller="PanelController as panel">
+            <ul class="nav nav-pills">
+                <li ng-class="{active: panel.isSelected(1)}">
+                    <a href ng-click="panel.tab(1)">Home</a>
+                </li>
+                <li ng-class="{active:panel.isSelected(2)}">
+                    <a href ng-click="panel.tab(2)">Profile</a>
+                </li>
+                <li ng-class="{active:panel.isSelected(3)}">
+                    <a href ng-click="panel.tab(3)">Messages</a>
+                </li>
+            </ul>
+        </section>
+        <div class="panel" ng-show='panel.isSelected(1)'>
+            <h4>Description</h4>
+            <p>{{store.product.description}}</p>
+        </div>
+        <div class="panel" ng-show='tab === 2'>
+            <h4>Specification</h4>
+            <blockquote>None yet</blockquote>
+        </div>
+        <div class="panel" ng-show='tab === 3'>
+            <h4>Reviews</h4>
+            <blockquote>None yet</blockquote>
+        </div>
+    </body>
+</html>
